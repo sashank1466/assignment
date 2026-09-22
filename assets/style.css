@@ -1,0 +1,276 @@
+/* ===== INDIAN ARMY THEME — individual program pages ===== */
+:root {
+  --a: #d4af37; /* military brass / insignia gold */
+  --b: #ff9933; /* tiranga saffron */
+  --bg: #0f140e; /* tactical deep field night */
+  --c: rgba(22, 32, 22, 0.92); /* armored field command bunker panel */
+  --t: #e6ede3; /* field gear light text */
+  --line: #3b4e34; /* olive drab perimeter line */
+
+  /* extra theme tokens */
+  --space: #0b1109;
+  --glow1: #2d3f20; /* olive field camouflage glow */
+  --glow2: #1c2b17; /* tactical dark forest */
+  --field: #121a11; /* command terminal input fields */
+  --h: #fbf5e6; /* brass gold heading */
+  --hglow: rgba(212, 175, 55, 0.45);
+  --muted: #a4b79e;
+  --ink: #0d1309; /* text on brass buttons */
+  --link: #f1b749;
+}
+body.light {
+  /* "Desert Warfare / Khaki Drill" daylight variant */
+  --a: #9e782f;
+  --b: #c45b00;
+  --bg: #eae3d2;
+  --c: #f5efe3;
+  --t: #22261d;
+  --line: #c4b99f;
+  --space: #dfd7c2;
+  --glow1: #f7ebd2;
+  --glow2: #e0d5ba;
+  --field: #fffdfa;
+  --h: #443b22;
+  --hglow: transparent;
+  --muted: #5e6654;
+  --link: #8c5d08;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+html {
+  scrollbar-color: #3e5338 #0b1109;
+}
+::selection {
+  background: #ff9933;
+  color: #0b1109;
+}
+
+/* Tactical Camouflage & Grid Layer */
+html::before,
+html::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+/* Camouflage disruptive pattern */
+html::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='380' height='380' viewBox='0 0 380 380'><path d='M35 45 Q75 10 130 50 Q180 90 120 120 Q60 140 30 100 Z' fill='%231b2617' opacity='0.7'/><path d='M220 30 Q280 15 320 65 Q350 115 290 130 Q230 145 210 90 Z' fill='%23283618' opacity='0.65'/><path d='M140 180 Q210 140 260 200 Q290 260 210 270 Q140 280 120 220 Z' fill='%23141c10' opacity='0.85'/><path d='M20 260 Q80 220 100 290 Q120 350 50 360 Q-10 370 10 300 Z' fill='%2323301a' opacity='0.7'/><path d='M280 270 Q350 240 370 310 Q380 370 310 365 Q250 360 260 300 Z' fill='%23344422' opacity='0.4'/><circle cx='85' cy='165' r='1.2' fill='%23d4af37' opacity='0.5'/><circle cx='295' cy='195' r='1.2' fill='%23d4af37' opacity='0.5'/><circle cx='180' cy='80' r='1.2' fill='%23d4af37' opacity='0.5'/><circle cx='180' cy='330' r='1.2' fill='%23d4af37' opacity='0.5'/></svg>");
+  animation: fieldpatrol 18s ease-in-out infinite alternate;
+}
+/* Military Radar coordinate sweep */
+html::after {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='560' height='560' viewBox='0 0 560 560'><defs><pattern id='grid' width='70' height='70' patternUnits='userSpaceOnUse'><path d='M 70 0 L 0 0 0 70' fill='none' stroke='%234b633d' stroke-width='0.7' stroke-opacity='0.22'/></pattern></defs><rect width='560' height='560' fill='url(%23grid)'/><circle cx='280' cy='280' r='260' fill='none' stroke='%234b633d' stroke-width='1.2' stroke-opacity='0.28' stroke-dasharray='5 10'/><circle cx='280' cy='280' r='180' fill='none' stroke='%234b633d' stroke-width='1' stroke-opacity='0.25'/><circle cx='280' cy='280' r='90' fill='none' stroke='%234b633d' stroke-width='1' stroke-opacity='0.3'/><path d='M 280 0 L 280 560 M 0 280 L 560 280' fill='none' stroke='%234b633d' stroke-width='0.8' stroke-opacity='0.35' stroke-dasharray='3 8'/><polygon points='280,272 284,280 280,288 276,280' fill='%23ff9933' opacity='0.7'/></svg>");
+  background-position: center;
+  animation: radarscan 14s linear infinite;
+}
+html:has(body.light)::before,
+html:has(body.light)::after {
+  opacity: 0;
+  animation: none;
+}
+@keyframes fieldpatrol {
+  0% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+@keyframes radarscan {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html::before,
+  html::after {
+    animation: none;
+  }
+}
+
+body {
+  font:
+    16px/1.6 system-ui,
+    sans-serif;
+  background:
+    radial-gradient(
+      ellipse 700px 500px at -10% -10%,
+      var(--glow1) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 650px 500px at 110% 105%,
+      var(--glow2) 0%,
+      transparent 60%
+    ),
+    var(--space);
+  color: var(--t);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+.wrap {
+  width: min(720px, 100%);
+  height: fit-content;
+  background: var(--c);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 30px;
+  position: relative;
+  box-shadow:
+    0 25px 70px #000000bb,
+    0 0 45px rgba(212, 175, 55, 0.1),
+    0 1px 0 rgba(212, 175, 55, 0.4) inset;
+}
+body.light .wrap {
+  box-shadow:
+    0 20px 50px rgba(50, 40, 20, 0.15),
+    0 1px 0 #ffffff inset;
+}
+/* Indian Army Insignia / Ashoka Star Corner Badge */
+.wrap::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='none' stroke='%23d4af37' stroke-width='3' stroke-dasharray='2 3'/><path d='M25 75 L75 25 M31 75 L75 31 M25 69 L69 25' stroke='%23f5f5f0' stroke-width='2' stroke-linecap='round'/><path d='M75 75 L25 25 M69 75 L25 31 M75 69 L31 25' stroke='%23f5f5f0' stroke-width='2' stroke-linecap='round'/><circle cx='50' cy='50' r='14' fill='%23283618' stroke='%23ff9933' stroke-width='2.5'/><circle cx='50' cy='50' r='4' fill='%23d4af37'/><path d='M50 38 L52 46 L60 46 L53 51 L56 59 L50 54 L44 59 L47 51 L40 46 L48 46 Z' fill='%23d4af37'/></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+}
+.wrap > h1:first-child {
+  padding-right: 44px;
+}
+h1 {
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: var(--h);
+  text-shadow:
+    0 0 12px var(--hglow),
+    0 0 30px rgba(255, 153, 51, 0.35);
+}
+body.light h1 {
+  text-shadow: none;
+}
+p.d {
+  opacity: 0.9;
+  margin: 6px 0 20px;
+  color: var(--muted);
+}
+a {
+  color: var(--link);
+}
+nav {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+a.btn,
+button {
+  background: linear-gradient(135deg, #f0c35e, var(--a) 55%, #ad851f);
+  color: var(--ink);
+  border: 0;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font: inherit;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+  border-radius: 4px;
+  box-shadow:
+    0 0 0 1px #ffffff50 inset,
+    0 4px 14px rgba(0, 0, 0, 0.5);
+  transition: 0.2s;
+}
+button:hover,
+a.btn:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 0 22px var(--a);
+}
+button:focus-visible,
+a.btn:focus-visible {
+  outline: 2px solid var(--b);
+  outline-offset: 2px;
+}
+input,
+select,
+textarea {
+  background: var(--field);
+  color: var(--t);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px;
+  font: inherit;
+  width: 100%;
+  margin: 6px 0;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--b);
+  box-shadow: 0 0 0 2px rgba(255, 153, 51, 0.35);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+td,
+th {
+  padding: 8px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+.out {
+  margin-top: 14px;
+  padding: 12px;
+  background: var(--field);
+  min-height: 44px;
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+}
+.big {
+  font-size: 44px;
+  text-align: center;
+  color: var(--a);
+  text-shadow: 0 0 16px rgba(212, 175, 55, 0.4);
+}
+body.light .big {
+  text-shadow: none;
+}
+.row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.row > * {
+  flex: 1;
+}
+.err {
+  color: #ff7366;
+  font-size: 14px;
+}
+li {
+  margin: 6px 0;
+}

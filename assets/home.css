@@ -1,0 +1,490 @@
+/* ===== INDIAN ARMY THEME — hub / listing pages ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+:root {
+  --sun: #ff9933; /* army tiranga saffron */
+  --sun2: #d4af37; /* military gold / brass insignia */
+  --space: #0f140e; /* tactical deep field night */
+  --panel: #162016; /* fortified field command dark green */
+  --line: #3b4e34; /* olive drab grid line */
+  --star: #f5f5f0;
+  --gold: #d4af37;
+  --ink: #0d1309; /* dark tactical green */
+}
+
+html {
+  scrollbar-color: #3e5338 #0b1109;
+}
+::selection {
+  background: #ff9933;
+  color: #0b1109;
+}
+
+/* Tactical Camouflage & Topographic Grid Layer */
+html::before,
+html::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+/* Camouflage disruptive pattern */
+html::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='380' height='380' viewBox='0 0 380 380'><path d='M35 45 Q75 10 130 50 Q180 90 120 120 Q60 140 30 100 Z' fill='%231b2617' opacity='0.7'/><path d='M220 30 Q280 15 320 65 Q350 115 290 130 Q230 145 210 90 Z' fill='%23283618' opacity='0.65'/><path d='M140 180 Q210 140 260 200 Q290 260 210 270 Q140 280 120 220 Z' fill='%23141c10' opacity='0.85'/><path d='M20 260 Q80 220 100 290 Q120 350 50 360 Q-10 370 10 300 Z' fill='%2323301a' opacity='0.7'/><path d='M280 270 Q350 240 370 310 Q380 370 310 365 Q250 360 260 300 Z' fill='%23344422' opacity='0.4'/><circle cx='85' cy='165' r='1.2' fill='%23d4af37' opacity='0.5'/><circle cx='295' cy='195' r='1.2' fill='%23d4af37' opacity='0.5'/><circle cx='180' cy='80' r='1.2' fill='%23d4af37' opacity='0.5'/><circle cx='180' cy='330' r='1.2' fill='%23d4af37' opacity='0.5'/></svg>");
+  animation: fieldpatrol 18s ease-in-out infinite alternate;
+}
+/* Military Radar coordinate grid & tactical sweep */
+html::after {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='560' height='560' viewBox='0 0 560 560'><defs><pattern id='grid' width='70' height='70' patternUnits='userSpaceOnUse'><path d='M 70 0 L 0 0 0 70' fill='none' stroke='%234b633d' stroke-width='0.7' stroke-opacity='0.22'/></pattern></defs><rect width='560' height='560' fill='url(%23grid)'/><circle cx='280' cy='280' r='260' fill='none' stroke='%234b633d' stroke-width='1.2' stroke-opacity='0.28' stroke-dasharray='5 10'/><circle cx='280' cy='280' r='180' fill='none' stroke='%234b633d' stroke-width='1' stroke-opacity='0.25'/><circle cx='280' cy='280' r='90' fill='none' stroke='%234b633d' stroke-width='1' stroke-opacity='0.3'/><path d='M 280 0 L 280 560 M 0 280 L 560 280' fill='none' stroke='%234b633d' stroke-width='0.8' stroke-opacity='0.35' stroke-dasharray='3 8'/><polygon points='280,272 284,280 280,288 276,280' fill='%23ff9933' opacity='0.7'/></svg>");
+  background-position: center;
+  animation: radarscan 14s linear infinite;
+}
+@keyframes fieldpatrol {
+  0% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+@keyframes radarscan {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+body.hub {
+  min-height: 100vh;
+  font:
+    16px/1.6 "Segoe UI",
+    system-ui,
+    sans-serif;
+  color: #e6ede3;
+  background:
+    radial-gradient(
+      ellipse 900px 600px at 15% -10%,
+      #2b3d1b 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 900px 700px at 110% 10%,
+      #132414 0%,
+      transparent 55%
+    ),
+    radial-gradient(ellipse 800px 600px at 0% 110%, #1f2d19 0%, transparent 60%),
+    var(--space);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Strategic Command Glow (Top-Left Saffron & Gold Radiance) */
+body.hub::before {
+  content: "";
+  position: fixed;
+  top: -420px;
+  left: -420px;
+  width: 720px;
+  height: 720px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #ffe29a 0%,
+    #d4af37 12%,
+    #ff9933 22%,
+    rgba(75, 99, 53, 0.4) 45%,
+    transparent 70%
+  );
+  opacity: 0.55;
+  z-index: -1;
+  pointer-events: none;
+  animation: sunpulse 6s ease-in-out infinite alternate;
+}
+/* Southern Command Target Compass */
+body.hub::after {
+  content: "";
+  position: fixed;
+  bottom: -330px;
+  right: -330px;
+  width: 760px;
+  height: 760px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 760 760'><g fill='none' stroke='%23d4af37' stroke-opacity='0.2' stroke-width='1.5'><circle cx='380' cy='380' r='90'/><circle cx='380' cy='380' r='160' stroke-dasharray='6 8'/><circle cx='380' cy='380' r='230'/><circle cx='380' cy='380' r='310' stroke-dasharray='4 10'/><circle cx='380' cy='380' r='370'/><line x1='380' y1='0' x2='380' y2='760'/><line x1='0' y1='380' x2='760' y2='380'/></g><circle cx='380' cy='380' r='18' fill='%23ff9933' opacity='0.7'/><circle cx='380' cy='380' r='38' fill='none' stroke='%23ff9933' stroke-width='2' opacity='0.4'/><polygon points='380,20 392,60 380,50 368,60' fill='%23d4af37'/><polygon points='380,740 392,700 380,710 368,700' fill='%23d4af37'/><polygon points='20,380 60,368 50,380 60,392' fill='%23d4af37'/><polygon points='740,380 700,368 710,380 700,392' fill='%23d4af37'/></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: -1;
+  opacity: 0.7;
+  pointer-events: none;
+  animation: drift 260s linear infinite;
+}
+@keyframes sunpulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+@keyframes drift {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 700px) {
+  body.hub::before {
+    top: -470px;
+    left: -470px;
+  }
+  body.hub::after {
+    bottom: -400px;
+    right: -400px;
+    opacity: 0.5;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html::before,
+  html::after,
+  body.hub::before,
+  body.hub::after,
+  .solar,
+  .solar * {
+    animation: none;
+  }
+}
+
+main {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 52px;
+  position: relative;
+}
+.hero small {
+  letter-spacing: 6px;
+  color: var(--sun2);
+  text-transform: uppercase;
+  font-weight: 800;
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 4px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+.hero h1 {
+  font-family: "Segoe UI", "Arial Black", Impact, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(2.2rem, 6.4vw, 4.6rem);
+  line-height: 1.05;
+  margin: 16px 0;
+  letter-spacing: 2px;
+  color: #f7ede2;
+  background: linear-gradient(90deg, #ff9933 0%, #ffffff 50%, #29a329 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 16px rgba(255, 153, 51, 0.45)) drop-shadow(0 6px 18px #000000e0);
+}
+.hero p {
+  opacity: 0.9;
+  color: #c0cfbb;
+}
+
+/* Indian Army Emblem Badge (Crossed Swords & Ashoka Lion Motif) */
+.hero::before {
+  content: "";
+  display: block;
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='none' stroke='%23d4af37' stroke-width='3' stroke-dasharray='2 3'/><path d='M25 75 L75 25 M31 75 L75 31 M25 69 L69 25' stroke='%23f5f5f0' stroke-width='2' stroke-linecap='round'/><path d='M75 75 L25 25 M69 75 L25 31 M75 69 L31 25' stroke='%23f5f5f0' stroke-width='2' stroke-linecap='round'/><circle cx='50' cy='50' r='14' fill='%23283618' stroke='%23ff9933' stroke-width='2.5'/><circle cx='50' cy='50' r='4' fill='%23d4af37'/><path d='M50 38 L52 46 L60 46 L53 51 L56 59 L50 54 L44 59 L47 51 L40 46 L48 46 Z' fill='%23d4af37'/></svg>"),
+    radial-gradient(circle at 50% 40%, #2a3d21 0%, #111a0d 75%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:
+    76% 76%,
+    100% 100%;
+  border: 2px solid var(--sun2);
+  box-shadow:
+    0 0 0 4px #1b2617,
+    0 0 28px rgba(212, 175, 55, 0.45);
+}
+
+/* Animated Indian Army Star & Chakra Radar */
+.hero.home-hero::before {
+  display: none;
+}
+.solar {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 18px;
+}
+.solar .sun {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff0b8, #d4af37 45%, #ff9933 100%);
+  box-shadow:
+    0 0 22px 6px rgba(255, 153, 51, 0.65),
+    0 0 45px 10px rgba(40, 54, 24, 0.85);
+  animation: sunpulse 4s ease-in-out infinite alternate;
+}
+.solar .orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  border: 1px dashed rgba(212, 175, 55, 0.28);
+  animation: drift linear infinite;
+}
+.solar .orbit i {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.solar .o1 {
+  width: 66px;
+  height: 66px;
+  margin: -33px 0 0 -33px;
+  animation-duration: 5s;
+  animation-delay: -1s;
+}
+.solar .o1 i {
+  width: 7px;
+  height: 7px;
+  background: #ff9933;
+}
+.solar .o2 {
+  width: 98px;
+  height: 98px;
+  margin: -49px 0 0 -49px;
+  animation-duration: 9s;
+  animation-delay: -4s;
+}
+.solar .o2 i {
+  width: 9px;
+  height: 9px;
+  background: #f5f5f0;
+}
+.solar .o3 {
+  width: 134px;
+  height: 134px;
+  margin: -67px 0 0 -67px;
+  animation-duration: 14s;
+  animation-delay: -9s;
+}
+.solar .o3 i {
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle at 35% 30%, #85c285, #29a329 70%);
+  box-shadow: 0 0 8px #29a329;
+}
+.solar .o4 {
+  width: 170px;
+  height: 170px;
+  margin: -85px 0 0 -85px;
+  animation-duration: 22s;
+  animation-delay: -3s;
+}
+.solar .o4 i {
+  width: 9px;
+  height: 9px;
+  background: #d4af37;
+}
+.solar .o5 {
+  width: 216px;
+  height: 216px;
+  margin: -108px 0 0 -108px;
+  animation-duration: 34s;
+  animation-delay: -21s;
+}
+.solar .o5 i {
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(180deg, #d4af37 30%, #523b12 70%);
+}
+
+.stats {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 34px;
+}
+.stats span {
+  padding: 8px 18px;
+  border-radius: 4px;
+  background: rgba(22, 32, 22, 0.88);
+  border: 1px solid #3b4e34;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.stats b {
+  color: var(--sun2);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 26px;
+}
+.card {
+  --c: #d4af37;
+  padding: 34px;
+  background: linear-gradient(160deg, rgba(29, 41, 26, 0.95), rgba(16, 24, 15, 0.98));
+  border: 1px solid #3d5236;
+  border-radius: 8px;
+  position: relative;
+  transition: 0.3s;
+}
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    160deg,
+    transparent 60%,
+    color-mix(in srgb, var(--c) 20%, transparent)
+  );
+}
+.card:hover {
+  transform: translateY(-8px);
+  border-color: var(--c);
+  box-shadow:
+    0 20px 50px #000000cc,
+    0 0 35px rgba(212, 175, 55, 0.3);
+}
+/* Tactical Squad & Regimental Medallion */
+.ic {
+  font-size: 38px;
+  width: 78px;
+  height: 78px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+  color: #fff;
+  border-radius: 12px;
+  background: radial-gradient(circle at 35% 30%, #465d3a, #131c10 82%);
+  border: 1px solid var(--c);
+  box-shadow:
+    0 0 16px rgba(212, 175, 55, 0.3),
+    inset -4px -4px 12px #00000088;
+}
+.card h2 {
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #f7ede2;
+}
+.card p {
+  opacity: 0.85;
+  margin-bottom: 26px;
+  color: #b7c7b3;
+}
+
+.go {
+  display: inline-block;
+  padding: 12px 28px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  background: linear-gradient(135deg, #f7ba4c, var(--sun2) 55%, #b3861b);
+  border-radius: 4px;
+  transition: 0.25s;
+  box-shadow:
+    0 0 0 1px #ffffff50 inset,
+    0 4px 14px rgba(0, 0, 0, 0.6);
+}
+.go:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--sun2);
+}
+.go:focus-visible {
+  outline: 2px solid #ff9933;
+  outline-offset: 3px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 56px;
+  opacity: 0.65;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #a8b8a3;
+}
+
+.list h2 {
+  margin: 34px 0 12px;
+  color: var(--sun2);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+.list ol {
+  display: grid;
+  gap: 9px;
+  padding-left: 0;
+  list-style: none;
+}
+.list li a {
+  display: block;
+  padding: 12px 18px;
+  background: rgba(22, 32, 22, 0.85);
+  border: 1px solid #3b4e34;
+  border-radius: 6px;
+  color: #e6ede3;
+  text-decoration: none;
+  transition: 0.2s;
+  position: relative;
+  border-left: 4px solid var(--sun);
+}
+.list li a:hover {
+  background: #25361e;
+  border-color: #55724b;
+  border-left-color: var(--sun2);
+  transform: translateX(8px);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.35);
+}
+.top {
+  margin-bottom: 30px;
+}
+
+pre.code {
+  background: rgba(14, 21, 13, 0.95);
+  padding: 18px;
+  border-radius: 6px;
+  overflow: auto;
+  line-height: 1.5;
+  margin-top: 16px;
+  font-size: 14px;
+  border: 1px solid #3b4e34;
+  color: #cbe3c3;
+}
